@@ -1,0 +1,135 @@
+/* Reset some default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Dark blue page background, 
+     with flexbox centering for the whole page */
+  body {
+    background-color: #001f3f; /* Dark blue */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+    color: #fff; /* Default text color */
+  }
+  
+  /* Title styling */
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  /* Calculator container:
+     - “Metal clear blue” style background via a soft gradient
+     - Enhanced box-shadow for a more pronounced pop
+     - Centered with max-width for responsiveness
+  */
+  .container {
+    background: linear-gradient(135deg, #8db3ff 0%, #5a81c7 100%);
+    padding: 20px;
+    border-radius: 10px;
+    /* Updated shadow: bigger blur and slight spread */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  /* Screen container for the “C” button and display screen */
+  .screen-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+  }
+  
+  /* Clear/Erase All button (C) */
+  .btn-erase-all {
+    align-self: flex-start;
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  /* Display screen area */
+  .screen {
+    background-color: #202020;
+    color: #ffffff;
+    min-height: 50px;
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  /* Buttons container */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Each row of buttons */
+  .buttons > div {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* General button styling for links */
+  .buttons a {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .buttons a:hover {
+    background: rgba(255,255,255,0.2);
+  }
+  
+  /* Special styling for the equals button */
+  .btn-equal {
+    background-color: #27ae60;
+  }
+  
+  .btn-equal:hover {
+    background-color: #2ecc71;
+  }
+  
+  /* Responsive adjustments for smaller devices */
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  
+    .screen {
+      font-size: 1.2rem;
+    }
+  
+    .buttons a {
+      padding: 10px;
+      font-size: 1rem;
+    }
+  }
+  
