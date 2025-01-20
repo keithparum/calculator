@@ -1,135 +1,214 @@
 /* Reset some default browser styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Dark blue page background, 
-     with flexbox centering for the whole page */
-  body {
-    background-color: #001f3f; /* Dark blue */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    font-family: sans-serif;
-    color: #fff; /* Default text color */
-  }
-  
-  /* Title styling */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark blue page background, 
+   with flexbox centering for the whole page */
+body {
+  background-color: #001f3f; /* Dark blue */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: sans-serif;
+  color: #fff; /* Default text color */
+}
+
+/* Title styling */
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Calculator container:
+   - “Metal clear blue” style background via a soft gradient
+   - Enhanced box-shadow for a more pronounced pop
+   - Centered with max-width for responsiveness
+*/
+.container {
+  background: linear-gradient(135deg, #8db3ff 0%, #5a81c7 100%);
+  padding: 20px;
+  border-radius: 10px;
+  /* Updated shadow: bigger blur and slight spread */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Screen container for the “C” button and display screen */
+.screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+/* Clear/Erase All button (C) */
+.btn-erase-all {
+  align-self: flex-start;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border: none;
+  text-align: center;
+}
+
+/* Display screen area */
+.screen {
+  background-color: #202020;
+  color: #ffffff;
+  min-height: 50px;
+  width: 100%;
+  text-align: right;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Buttons container */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each row of buttons */
+.buttons > div {
+  display: flex;
+  gap: 10px;
+}
+
+/* General button styling */
+button {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+/* Hover effect */
+button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Special styling for operator buttons */
+.btn-divide,
+.btn-multiply,
+.btn-substract,
+.btn-add {
+  background-color: #f39c12; /* Orange for operators */
+}
+
+.btn-divide:hover,
+.btn-multiply:hover,
+.btn-substract:hover,
+.btn-add:hover {
+  background-color: #f1c40f; /* Lighter orange on hover */
+}
+
+/* Special styling for the equals button */
+.btn-equal {
+  background-color: #27ae60;
+}
+
+.btn-equal:hover {
+  background-color: #2ecc71;
+}
+
+/* Special styling for clear/erase buttons */
+.btn-erase-last,
+.btn-square,
+.btn-percent {
+  background-color: #3498db; /* Blue for special operations */
+}
+
+.btn-erase-last:hover,
+.btn-square:hover,
+.btn-percent:hover {
+  background-color: #5dade2;
+}
+
+/* Styling for number buttons */
+.btn-seven,
+.btn-eight,
+.btn-nine,
+.btn-four,
+.btn-five,
+.btn-six,
+.btn-one,
+.btn-two,
+.btn-three,
+.btn-zero {
+  background-color: rgba(255, 255, 255, 0.1); /* Default background */
+}
+
+.btn-seven:hover,
+.btn-eight:hover,
+.btn-nine:hover,
+.btn-four:hover,
+.btn-five:hover,
+.btn-six:hover,
+.btn-one:hover,
+.btn-two:hover,
+.btn-three:hover,
+.btn-zero:hover {
+  background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+}
+
+/* Styling for the dot (.) button */
+.btn-dot {
+  background-color: #d35454; /* Muted red that blends with the gradient theme */
+  color: #fff; /* White text for contrast */
+  font-weight: bold; /* Make the text stand out */
+  border: none; /* Remove default borders */
+  border-radius: 5px; /* Match the style of other buttons */
+  cursor: pointer; /* Pointer cursor for better UX */
+  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+}
+
+.btn-dot:hover {
+  background-color: #e74c3c; /* Slightly brighter red for hover */
+}
+
+/* Styling for the negative button */
+.btn-negative {
+  background-color: #9b59b6; /* Purple for negative button */
+}
+
+.btn-negative:hover {
+  background-color: #af7ac5; /* Lighter purple on hover */
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 480px) {
   .title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  /* Calculator container:
-     - “Metal clear blue” style background via a soft gradient
-     - Enhanced box-shadow for a more pronounced pop
-     - Centered with max-width for responsiveness
-  */
-  .container {
-    background: linear-gradient(135deg, #8db3ff 0%, #5a81c7 100%);
-    padding: 20px;
-    border-radius: 10px;
-    /* Updated shadow: bigger blur and slight spread */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  /* Screen container for the “C” button and display screen */
-  .screen-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-bottom: 1rem;
-  }
-  
-  /* Clear/Erase All button (C) */
-  .btn-erase-all {
-    align-self: flex-start;
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-  
-  /* Display screen area */
-  .screen {
-    background-color: #202020;
-    color: #ffffff;
-    min-height: 50px;
-    width: 100%;
-    text-align: right;
-    padding: 10px;
-    border-radius: 5px;
     font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
   }
-  
-  /* Buttons container */
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  /* Each row of buttons */
-  .buttons > div {
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* General button styling for links */
-  .buttons a {
-    flex: 1;
-    background: rgba(255,255,255,0.1);
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-    padding: 15px;
+
+  .screen {
     font-size: 1.2rem;
-    border-radius: 5px;
-    transition: background 0.2s;
-    cursor: pointer;
   }
-  
-  /* Hover effect */
-  .buttons a:hover {
-    background: rgba(255,255,255,0.2);
+
+  button {
+    padding: 10px;
+    font-size: 1rem;
   }
-  
-  /* Special styling for the equals button */
-  .btn-equal {
-    background-color: #27ae60;
-  }
-  
-  .btn-equal:hover {
-    background-color: #2ecc71;
-  }
-  
-  /* Responsive adjustments for smaller devices */
-  @media (max-width: 480px) {
-    .title {
-      font-size: 1.5rem;
-    }
-  
-    .screen {
-      font-size: 1.2rem;
-    }
-  
-    .buttons a {
-      padding: 10px;
-      font-size: 1rem;
-    }
-  }
-  
+}
