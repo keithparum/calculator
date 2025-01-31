@@ -4,6 +4,7 @@ const storedValues = []; // Array to store input values
 const screen = document.querySelector('.screen'); // Select the screen div
 const history = []; // Store past calculations
 let isTouchEvent = false; // Track if a touch event is active
+let lastResult = null; // Stores the last calculated result
 
 // Unified event handler for button clicks/taps
 function handleEvent(event) {
@@ -19,7 +20,7 @@ function handleEvent(event) {
 // Keyboard input handler
 function handleKeyboard(event) {
     const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', 
-                         '+', '-', '*', '/', '(', ')', '=', 'Enter', 'Backspace', 'Escape'];
+                         '+', '-', '*', '/', '(', ')', '=', '%', 'Enter', 'Backspace', 'Escape'];
     const key = event.key;
 
     if (allowedKeys.includes(key)) {
@@ -38,8 +39,16 @@ function handleKeyboard(event) {
 
 // Function to add values and update the screen
 function addToStoredValues(value) {
+    // Auto-clear if a new number is entered right after a result
+    if (lastResult !== null && !isNaN(value)) {
+        clearCalculator();
+    }
+
     if (value === "=") {
         calculateResult();
+        return;
+    } else if (value === "%") {
+        applyPercentage();
         return;
     } else if (value === "C") {
         clearCalculator();
@@ -62,6 +71,7 @@ function updateScreen() {
 function clearCalculator() {
     storedValues.length = 0;
     screen.innerText = '';
+    lastResult = null;
 }
 
 // Using event delegation to handle button clicks
@@ -76,7 +86,7 @@ document.body.addEventListener("touchstart", (event) => {
 // Add a listener for keyboard input
 document.addEventListener("keydown", handleKeyboard);
 
-// Function to safely calculate result using a custom expression parser
+// Function to safely calculate result using the Shunting-Yard Algorithm
 function calculateResult() {
     try {
         let expression = storedValues.join('');
@@ -89,11 +99,59 @@ function calculateResult() {
         history.push(`${expression} = ${result}`);
         screen.innerText = result;
         storedValues.length = 0;
-        storedValues.push(result.toString()); // Store result for further calculations
+        storedValues.push(result.toString()); // Store result for continued calculations
+        lastResult = result; // Mark lastResult for auto-clear logic
     } catch (error) {
         screen.innerText = "Error";
         setTimeout(() => clearCalculator(), 2000);
     }
+}
+
+// Function to apply percentage logic
+function applyPercentage() {
+    if (storedValues.length === 0) return;
+
+    let expression = storedValues.join('');
+    let lastOperatorIndex = expression.lastIndexOf('+') > expression.lastIndexOf('-') ?
+                            expression.lastIndexOf('+') : expression.lastIndexOf('-');
+
+    if (lastOperatorIndex === -1) lastOperatorIndex = expression.lastIndexOf('*') > expression.lastIndexOf('/') ?
+                            expression.lastIndexOf('*') : expression.lastIndexOf('/');
+
+    if (lastOperatorIndex === -1) return;
+
+    let baseValue = evaluateExpression(expression.substring(0, lastOperatorIndex)); // Get base number
+    let percentageValue = evaluateExpression(expression.substring(lastOperatorIndex + 1)); // Get percentage number
+
+    if (isNaN(baseValue) || isNaN(percentageValue)) {
+        screen.innerText = "Error";
+        setTimeout(() => clearCalculator(), 2000);
+        return;
+    }
+
+    let result = 0;
+    let operator = expression[lastOperatorIndex];
+
+    switch (operator) {
+        case '+':
+            result = baseValue + (baseValue * percentageValue / 100);
+            break;
+        case '-':
+            result = baseValue - (baseValue * percentageValue / 100);
+            break;
+        case '*':
+            result = baseValue * (percentageValue / 100);
+            break;
+        case '/':
+            result = baseValue / (percentageValue / 100);
+            break;
+    }
+
+    history.push(`${expression} = ${result}`);
+    screen.innerText = result;
+    storedValues.length = 0;
+    storedValues.push(result.toString());
+    lastResult = result;
 }
 
 // Function to evaluate mathematical expressions safely using the Shunting-Yard Algorithm
@@ -153,10 +211,4 @@ function evaluateExpression(expression) {
     }
 
     return evaluationStack.pop();
-}
-
-// Function to display calculation history
-function showHistory() {
-    console.log("Calculation History:");
-    history.forEach((entry, index) => console.log(`${index + 1}: ${entry}`));
 }
