@@ -1,21 +1,20 @@
-/* Reset some default browser styles */
+/* Reset default browser styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Dark blue page background, 
-   with flexbox centering for the whole page */
+/* Dark blue page background with flex centering */
 body {
-  background-color: #001f3f; /* Dark blue */
+  background-color: #001f3f;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   font-family: sans-serif;
-  color: #fff; /* Default text color */
+  color: #fff;
 }
 
 /* Title styling */
@@ -25,44 +24,22 @@ body {
   text-align: center;
 }
 
-/* Calculator container:
-   - “Metal clear blue” style background via a soft gradient
-   - Enhanced box-shadow for a more pronounced pop
-   - Centered with max-width for responsiveness
-*/
+/* Calculator container styling */
 .container {
   background: linear-gradient(135deg, #8db3ff 0%, #5a81c7 100%);
   padding: 20px;
   border-radius: 10px;
-  /* Updated shadow: bigger blur and slight spread */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
   width: 90%;
   max-width: 400px;
 }
 
-/* Screen container for the “C” button and display screen */
+/* Screen container for the display */
 .screen-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
   margin-bottom: 1rem;
 }
 
-/* Clear/Erase All button (C) */
-.btn-erase-all {
-  align-self: flex-start;
-  background-color: #e74c3c;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  border: none;
-  text-align: center;
-}
-
-/* Display screen area */
+/* Display screen styling */
 .screen {
   background-color: #202020;
   color: #ffffff;
@@ -109,44 +86,41 @@ button:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Special styling for operator buttons */
+/* Operator buttons */
 .btn-divide,
 .btn-multiply,
 .btn-substract,
 .btn-add {
-  background-color: #f39c12; /* Orange for operators */
+  background-color: #f39c12;
 }
-
 .btn-divide:hover,
 .btn-multiply:hover,
 .btn-substract:hover,
 .btn-add:hover {
-  background-color: #f1c40f; /* Lighter orange on hover */
+  background-color: #f1c40f;
 }
 
-/* Special styling for the equals button */
+/* Equals button */
 .btn-equal {
   background-color: #27ae60;
 }
-
 .btn-equal:hover {
   background-color: #2ecc71;
 }
 
-/* Special styling for clear/erase buttons */
+/* Special operations buttons */
 .btn-erase-last,
 .btn-square,
 .btn-percent {
-  background-color: #3498db; /* Blue for special operations */
+  background-color: #3498db;
 }
-
 .btn-erase-last:hover,
 .btn-square:hover,
 .btn-percent:hover {
   background-color: #5dade2;
 }
 
-/* Styling for number buttons */
+/* Number buttons */
 .btn-seven,
 .btn-eight,
 .btn-nine,
@@ -157,9 +131,8 @@ button:hover {
 .btn-two,
 .btn-three,
 .btn-zero {
-  background-color: rgba(255, 255, 255, 0.1); /* Default background */
+  background-color: rgba(255, 255, 255, 0.1);
 }
-
 .btn-seven:hover,
 .btn-eight:hover,
 .btn-nine:hover,
@@ -170,43 +143,45 @@ button:hover {
 .btn-two:hover,
 .btn-three:hover,
 .btn-zero:hover {
-  background: rgba(255, 255, 255, 0.2); /* Highlight on hover */
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* Styling for the dot (.) button */
+/* Dot button */
 .btn-dot {
-  background-color: #d35454; /* Muted red that blends with the gradient theme */
-  color: #fff; /* White text for contrast */
-  font-weight: bold; /* Make the text stand out */
-  border: none; /* Remove default borders */
-  border-radius: 5px; /* Match the style of other buttons */
-  cursor: pointer; /* Pointer cursor for better UX */
-  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+  background-color: #d35454;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-
 .btn-dot:hover {
-  background-color: #e74c3c; /* Slightly brighter red for hover */
+  background-color: #e74c3c;
 }
 
-/* Styling for the negative button */
-.btn-negative {
-  background-color: #9b59b6; /* Purple for negative button */
+/* Clear button styling (replacing negative toggle) */
+.btn-clear {
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-clear:hover {
+  background-color: #c0392b;
 }
 
-.btn-negative:hover {
-  background-color: #af7ac5; /* Lighter purple on hover */
-}
-
-/* Responsive adjustments for smaller devices */
+/* Responsive adjustments */
 @media (max-width: 480px) {
   .title {
     font-size: 1.5rem;
   }
-
   .screen {
     font-size: 1.2rem;
   }
-
   button {
     padding: 10px;
     font-size: 1rem;

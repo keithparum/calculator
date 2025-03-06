@@ -3,55 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <title>Calculator</title>
   </head>
   <body>
     <h1 class="title">Calculator</h1>
-
     <div class="container">
       <div class="screen-container">
-        <button class="btn-erase-all">C</button>
-        <div class="screen"></div>
+        <div class="screen">0</div>
       </div>
       <div class="buttons">
         <div>
-          <button href="" class="btn-erase-last">◀</button>
-          <button href="" class="btn-square">x²</button>
-          <button href="" class="btn-percent">%</button>
-          <button href="" class="btn-divide">/</button>
+          <button class="btn-erase-last">◀</button>
+          <button class="btn-square">x²</button>
+          <button class="btn-percent">%</button>
+          <button class="btn-divide">/</button>
         </div>
-
         <div>
           <button class="btn-seven">7</button>
           <button class="btn-eight">8</button>
           <button class="btn-nine">9</button>
           <button class="btn-multiply">*</button>
         </div>
-        
         <div>
           <button class="btn-four">4</button>
           <button class="btn-five">5</button>
           <button class="btn-six">6</button>
           <button class="btn-substract">-</button>
         </div>
-        
         <div>
           <button class="btn-one">1</button>
           <button class="btn-two">2</button>
           <button class="btn-three">3</button>
           <button class="btn-add">+</button>
         </div>
-        
         <div>
-          <button class="btn-negative">-/+</button>
+          <!-- Negative button removed and replaced by a clear (C) button -->
+          <button class="btn-clear">C</button>
           <button class="btn-zero">0</button>
           <button class="btn-dot">.</button>
           <button class="btn-equal">=</button>
         </div>
       </div>
     </div>
-
     <script src="main.js"></script>
   </body>
 </html>
